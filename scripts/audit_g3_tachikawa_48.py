@@ -60,6 +60,7 @@ def audit():
         if z.testzip() is not None:
             raise ValueError("G3 ZIP CRC check failed")
         data = {name: subset(z, fn, expected) for name, fn in FILES.items()}
+        odds_failures = subset(z, "odds_failures.csv", expected)
 
     individual = []
     totals = collections.Counter()
@@ -152,6 +153,10 @@ def audit():
             for day in sorted(DAYS)
         },
         "anomalies": [r for r in individual if r["problems"]],
+        "archive_odds_failure_logs": [
+            {"race_id": rid, "reason": (row.get("error") or "")[:350]}
+            for rid, records in odds_failures.items() for row in records
+        ],
         "limitations": [
             "Only structural and basic per-race row checks: not an expert reconstruction of all finishing statuses.",
             "Stored final odds are post-event/final; never assume they are 15-minute-before-close quotes.",
@@ -171,7 +176,7 @@ def main():
     dst.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: report[k] for k in ("scope", "totals", "payout_market_coverage_races",
                                              "odds_phase_quote_counts", "odds_status_quote_counts",
-                                             "per_day", "anomalies")}, ensure_ascii=False))
+                                             "per_day", "anomalies", "archive_odds_failure_logs")}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
