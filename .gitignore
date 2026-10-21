@@ -1,0 +1,27 @@
+# No credentials or collected data in public Git history.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.parquet
+*.csv
+*.csv.gz
+*.jsonl
+*.jsonl.gz
+*.gpg
+*.p7m
+*.zip
+*.gz
+data/
+raw/
+encrypted/
+cache/
+out/
+__pycache__/
+.pytest_cache/
