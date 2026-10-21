@@ -1,0 +1,60 @@
+{
+  "note": "SYNTHETIC EXAMPLE ONLY. NOT actual race data, not verified against any provider.",
+  "date": "2023-01-01",
+  "calendar_verified": false,
+  "calendar_scope": "all_mens_races",
+  "calendar_source": null,
+  "calendar_races": [
+    {
+      "race_date": "2023-01-01",
+      "venue_key": "SYNTHETIC-VENUE",
+      "race_no": 1
+    },
+    {
+      "race_date": "2023-01-01",
+      "venue_key": "SYNTHETIC-VENUE",
+      "race_no": 2
+    },
+    {
+      "race_date": "2023-01-01",
+      "venue_key": "SYNTHETIC-VENUE",
+      "race_no": 3
+    }
+  ],
+  "sources": {
+    "winticket": [
+      {
+        "race_date": "2023-01-01",
+        "venue_key": "SYNTHETIC-VENUE",
+        "race_no": 1,
+        "source_race_id": "demo-w1"
+      },
+      {
+        "race_date": "2023-01-01",
+        "venue_key": "SYNTHETIC-VENUE",
+        "race_no": 2,
+        "source_race_id": "demo-w2"
+      },
+      {
+        "race_date": "2023-01-01",
+        "venue_key": "SYNTHETIC-VENUE",
+        "race_no": 3,
+        "source_race_id": "demo-w3"
+      }
+    ],
+    "netkeirin": [
+      {
+        "race_date": "2023-01-01",
+        "venue_key": "SYNTHETIC-VENUE",
+        "race_no": 1,
+        "source_race_id": "demo-n1"
+      },
+      {
+        "race_date": "2023-01-01",
+        "venue_key": "SYNTHETIC-VENUE",
+        "race_no": 3,
+        "source_race_id": "demo-n3"
+      }
+    ]
+  }
+}
