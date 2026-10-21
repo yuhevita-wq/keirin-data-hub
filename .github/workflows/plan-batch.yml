@@ -1,0 +1,29 @@
+name: Verify historical batch planner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test planner
+        run: python -m unittest discover -s tests -v
+      - name: Plan first seven days (no network collection)
+        run: |
+          python scripts/plan_batch.py --start 2023-01-01 --end 2023-01-31 \
+            --days 7 --ledger state/progress.json --output out/batch_plan.json
+      - name: Save planning-only report
+        uses: actions/upload-artifact@v4
+        with:
+          name: batch-plan
+          path: out/batch_plan.json
+          retention-days: 7
