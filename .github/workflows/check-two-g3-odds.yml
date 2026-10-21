@@ -1,0 +1,30 @@
+name: Check two missing G3 odds in other archives
+
+on:
+  push:
+    paths:
+      - ".github/workflows/check-two-g3-odds.yml"
+      - "scripts/check_tachikawa_missing_odds_other_archives.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Search 2023 completed odds and independent G3 repair report
+        run: python -m scripts.check_tachikawa_missing_odds_other_archives
+      - name: Preserve metadata-only result (no original odds)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tachikawa-two-g3-odds-archive-audit
+          path: out/tachikawa_two_odds_cross_archive_audit.json
+          retention-days: 7
+          if-no-files-found: error
