@@ -1,0 +1,23 @@
+name: Validate shared data partitions
+on:
+  push:
+    paths:
+      - ".github/workflows/validate-partitions.yml"
+      - "scripts/partition_rules.py"
+      - "tests/test_partition_rules.py"
+      - "config/verified_events.json"
+      - "docs/partitioning.md"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check classification and other existing tests
+        run: python -m unittest discover -s tests -v
