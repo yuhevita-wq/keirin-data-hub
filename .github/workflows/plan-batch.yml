@@ -1,4 +1,4 @@
-name: Verify historical batch planner
+name: Verify planning and race census audit
 
 on:
   workflow_dispatch:
@@ -15,15 +15,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Test planner
+      - name: Test date planner and discovery audit
         run: python -m unittest discover -s tests -v
       - name: Plan first seven days (no network collection)
         run: |
           python scripts/plan_batch.py --start 2023-01-01 --end 2023-01-31 \
             --days 7 --ledger state/progress.json --output out/batch_plan.json
-      - name: Save planning-only report
+      - name: Demo cross-source missing-race audit (synthetic only)
+        run: |
+          python scripts/audit_race_census.py --input examples/SYNTHETIC_discovery.json \
+            --output out/census_audit.json
+      - name: Save planning and synthetic audit reports
         uses: actions/upload-artifact@v4
         with:
-          name: batch-plan
-          path: out/batch_plan.json
+          name: planning-and-census-audit
+          path: |
+            out/batch_plan.json
+            out/census_audit.json
           retention-days: 7
