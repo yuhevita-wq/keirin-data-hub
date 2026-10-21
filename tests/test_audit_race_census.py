@@ -42,7 +42,7 @@ class DiscoveryAuditTests(unittest.TestCase):
 
     def test_missing_from_all_sources_requires_review(self):
         payload = example()
-        payload["sources"]["winticket"].pop()
+        payload["sources"]["winticket"].pop(1)  # remove race 2, absent from netkeirin
         result = audit_discovery(payload)
         self.assertEqual(result["status"], "review_needed")
         self.assertEqual(result["missing_from_calendar_union"],
