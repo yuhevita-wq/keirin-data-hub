@@ -1,0 +1,61 @@
+{
+  "scope": {
+    "start": "2023-01-01",
+    "end": "2023-01-07"
+  },
+  "sources": {
+    "calendar": "yuhevita-wq/keirin-market-analysis-:data/nationwide_calendar/2023-01-01__2023-01-31/race_index.csv.gz",
+    "entry_archives": [
+      "data/a_class_12/2023_01_02/races.csv",
+      "data/a3_challenge/2023_01_02/races.csv",
+      "data/2023/s_class_f1_all_parts/2023_q1/races.csv"
+    ],
+    "g3_verification": "https://keirin.kdreams.jp/tachikawa/dokantoresultlist/2820230104/?l-id=l-pc-srdi-sdi-raceinfo_kaisai_detail_nav_btn"
+  },
+  "observed_calendar_races": 597,
+  "matched_entries": 511,
+  "calendar_only": 86,
+  "classified": {
+    "girls_excluded": 38,
+    "tachikawa_g3_2023_01_04_through_07": 48,
+    "unknown": 0
+  },
+  "girls_breakdown": {
+    "ガールズ予選1": 14,
+    "ガールズ予選2": 14,
+    "ガールズ一般": 5,
+    "ガールズ決勝": 5
+  },
+  "tachikawa_g3_breakdown_by_day": {
+    "2023-01-04": 12,
+    "2023-01-05": 12,
+    "2023-01-06": 12,
+    "2023-01-07": 12
+  },
+  "tachikawa_g3_breakdown_by_race_type": {
+    "S級一予選": 11,
+    "S級初特選": 1,
+    "S級選抜": 11,
+    "S級二予選": 7,
+    "S級一般": 6,
+    "S級特選": 6,
+    "S級準決勝": 3,
+    "S級特秀": 2,
+    "S級決勝": 1
+  },
+  "daily_calendar_only_count": {
+    "2023-01-01": 6,
+    "2023-01-02": 6,
+    "2023-01-03": 6,
+    "2023-01-04": 12,
+    "2023-01-05": 16,
+    "2023-01-06": 20,
+    "2023-01-07": 20
+  },
+  "caveats": [
+    "These 86 are absent only from the three class-specific entry archives that were compared.",
+    "Tachikawa G3 was outside the S-class F1 archive by design.",
+    "The existence/completeness of corresponding G3 files, player histories, results, payouts and odds has not yet been checked.",
+    "Calendar observed-links is not proof of nationwide universe coverage."
+  ]
+}
