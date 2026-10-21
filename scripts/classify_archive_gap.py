@@ -9,7 +9,9 @@ import json
 import re
 from datetime import date
 from pathlib import Path
+import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.audit_archive_pilot import SOURCES, read_archive, csv_rows, row_date
 
 START, END = date(2023, 1, 1), date(2023, 1, 7)
