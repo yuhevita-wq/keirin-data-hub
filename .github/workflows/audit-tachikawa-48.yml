@@ -1,0 +1,29 @@
+name: Audit Tachikawa G3 48 races
+
+on:
+  push:
+    paths:
+      - ".github/workflows/audit-tachikawa-48.yml"
+      - "scripts/audit_g3_tachikawa_48.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-races:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Audit 48 archived races against original ZIP
+        run: python -m scripts.audit_g3_tachikawa_48
+      - name: Save only anonymized aggregated audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: tachikawa-g3-48-audit
+          path: out/g3_tachikawa_2023_48_audit.json
+          retention-days: 7
