@@ -1,0 +1,29 @@
+name: Inspect saved 2023 G3 Q1 archive
+
+on:
+  push:
+    paths:
+      - ".github/workflows/inspect-g3-q1.yml"
+      - "scripts/inspect_g3_zip.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-zip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Inspect verified G3 archive contents
+        run: python -m scripts.inspect_g3_zip
+      - name: Save structure-only report
+        uses: actions/upload-artifact@v4
+        with:
+          name: g3-q1-zip-structure
+          path: out/g3_2023_q1_zip_structure.json
+          retention-days: 7
