@@ -1,0 +1,29 @@
+name: Classify Jan 2023 archive gap
+on:
+  push:
+    paths:
+      - '.github/workflows/classify-gap.yml'
+      - 'scripts/classify_archive_gap.py'
+      - 'tests/test_classify_archive_gap.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run classification tests
+        run: python -m unittest discover -s tests -v
+      - name: Classify real historical 86 calendar-only races
+        run: python scripts/classify_archive_gap.py
+      - name: Preserve classified race IDs and aggregate summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-86-classification
+          path: out/2023-01-01_to_07_gap_classification.json
+          retention-days: 7
