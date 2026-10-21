@@ -1,0 +1,28 @@
+{
+  "audit_date": "2026-10-22",
+  "scope": "2023-01-01 through 2023-01-07",
+  "verified_run_url": "https://github.com/yuhevita-wq/keirin-data-hub/actions/runs/39625716004",
+  "status": "classified_not_training_ready",
+  "unique_calendar_observed_races": 597,
+  "matched_class_archive_races": 511,
+  "partition_counts": {
+    "grade=F1/class=S/year=2023": 130,
+    "grade=F1/class=A1_A2/year=2023": 97,
+    "grade=F2/class=A1_A2/year=2023": 190,
+    "grade=F2/class=A3/year=2023": 94,
+    "grade=G3/class=S/year=2023": 48,
+    "excluded_girls": 38
+  },
+  "included_races": 559,
+  "excluded_girls": 38,
+  "quarantine_races": 0,
+  "included_without_entry_archive": 48,
+  "result_of": "Read-only 7-day classification of existing public archived race IDs and available race metadata",
+  "limitations": [
+    "597 observed calendar links are not a nationally certified complete count",
+    "G3 48 race IDs are classified by verified Tachikawa event; their detailed racecards were not materialized",
+    "No rider results, payouts, pre-race odds, feature vintages, or training-ready rows were validated",
+    "Raw manifest is in the 7-day Actions artifact, not a permanent dataset store",
+    "No new website scraping and no model retraining took place"
+  ]
+}
