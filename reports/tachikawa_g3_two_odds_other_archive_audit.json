@@ -1,0 +1,55 @@
+{
+  "status": "no_verified_complete_plaintext_final_odds_in_inspected_archives",
+  "checked_at": "2026-10-22",
+  "targets": [
+    {
+      "race_id": "2820230104010006",
+      "date": "2023-01-04",
+      "venue": "立川",
+      "race_no": 6,
+      "annual_complete_final_odds": "not_found",
+      "g3_repair": "failed",
+      "error": "trifecta fixed-first tables missing for car 1"
+    },
+    {
+      "race_id": "2820230104040007",
+      "date": "2023-01-07",
+      "venue": "立川",
+      "race_no": 7,
+      "annual_complete_final_odds": "not_found",
+      "g3_repair": "failed",
+      "error": "trifecta fixed-first tables missing for car 2"
+    }
+  ],
+  "existing_sources_inspected": [
+    {
+      "path": "data/grade_races/g3/2023/g3-all-2023-q1-non-girls.zip",
+      "finding": "Both target racecards/results/payouts present; trifecta and trio final odds missing in both"
+    },
+    {
+      "path": "data/odds_universe_v1/grade_archive_repairs/g3-all-2023-q1-non-girls/batch_b5a4bd79e66848/summary.json",
+      "finding": "Both listed in failed race IDs. Seven attempts overall, zero complete."
+    },
+    {
+      "path": "data/odds_only/odds_2023.jsonl.gz",
+      "verified_sha256": "b46cc6399df97edffbecfe2d4f0ab22035a17da523f04feda20af3a9bda7db7b",
+      "verified_records": 10522,
+      "finding": "Both race IDs absent in complete-only final odds export"
+    }
+  ],
+  "encrypted_unverified": [
+    {
+      "directory": "data/odds_ciphertext/2023/2023-01-04/",
+      "file": "38867689979-2.p7m",
+      "conclusion": "Ciphertext exists for date. Contents unavailable without private decryption key; target race coverage NOT verified."
+    },
+    {
+      "directory": "data/odds_ciphertext/2023/2023-01-07/",
+      "file": "38869657152-2.p7m",
+      "conclusion": "Ciphertext exists for date. Contents unavailable without private decryption key; target race coverage NOT verified."
+    }
+  ],
+  "verified_run": "https://github.com/yuhevita-wq/keirin-data-hub/actions/runs/39628560090",
+  "next_step": "Before attempting re-collection, locally decrypt the two date files with the user's retained private key and check exact race IDs; do not post/deposit keys into GitHub or chat.",
+  "caution": "This is not proof that no original historical prices exist anywhere. No pre-race 15-minute snapshots verified."
+}
