@@ -39,8 +39,8 @@ def describe(raw):
         for f in z.infolist():
             if f.is_dir():
                 continue
-            if f.file_size > 20_000_000:
-                raise ValueError("Archive member exceeds 20 MB decompressed")
+            if f.file_size > 200_000_000:
+                raise ValueError("Archive member exceeds 200 MB decompressed")
             detail = {"name": f.filename, "uncompressed_bytes": f.file_size}
             if f.filename.endswith(".csv"):
                 with z.open(f) as src:
