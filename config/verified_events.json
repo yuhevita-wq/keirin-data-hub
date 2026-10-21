@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "note": "Only independently evidenced event records are included. This registry is not a complete racing calendar.",
+  "events": [
+    {
+      "source": "kdreams",
+      "kdreams_track_code": "28",
+      "venue": "立川",
+      "start_date": "2023-01-04",
+      "end_date": "2023-01-07",
+      "grade": "G3",
+      "event_name": "鳳凰賞典レース",
+      "verification_url": "https://keirin.kdreams.jp/tachikawa/dokantoresultlist/2820230104/?l-id=l-pc-srdi-sdi-raceinfo_kaisai_detail_nav_btn"
+    }
+  ]
+}
