@@ -1,0 +1,39 @@
+name: Audit real grade/class partitions (first 7 days)
+
+on:
+  push:
+    paths:
+      - "scripts/audit_real_partitions.py"
+      - "tests/test_audit_real_partitions.py"
+      - ".github/workflows/partition-real-week.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: partition-real-week
+  cancel-in-progress: false
+
+jobs:
+  partition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify partition rules and fixtures
+        run: python -m unittest discover -s tests -v
+      - name: Classify real archived race IDs (no new racing site access)
+        run: python -m scripts.audit_real_partitions --expected-calendar 597
+      - name: Save partition manifest and audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-partitions-first-week
+          path: |
+            out/partition_2023_01_01_07_audit.json
+            out/partition_2023_01_01_07_manifest.jsonl
+          retention-days: 7
+          if-no-files-found: error
