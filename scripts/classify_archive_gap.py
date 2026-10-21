@@ -28,6 +28,12 @@ def classify(row):
     label = get_label(row)
     if GIRLS_PATTERN.search(label):
         return "girls"
+    # 2023-01-04..07 Tachikawa is independently confirmed G3 (鳳凰賞典).
+    # The archived link calendar has no grade column; do not infer grade from S-class alone.
+    if (row.get("race_date") in {"2023-01-04", "2023-01-05", "2023-01-06", "2023-01-07"}
+            and "/tachikawa/racedetail/" in str(row.get("odds_page_url") or "")
+            and ("Ｓ級" in label or "S級" in label)):
+        return "verified_tachikawa_g3"
     if re.search(r"(?:G3|Ｇ３|GIII|GⅢ|記念競輪)", label, flags=re.IGNORECASE):
         return "explicit_g3"
     if re.search(r"(?:G2|Ｇ２|GII|GⅡ)", label, flags=re.IGNORECASE):
@@ -96,13 +102,15 @@ def make_report():
         "reference_counts": {"calendar": len(cal), "matched_in_3_archives": len(present & set(cal)),
                              "calendar_only": len(unmatched)},
         "classification": dict(sorted(counter.items())),
+        "grade_reference": {"verified_event": "2023-01-04 to 2023-01-07 Tachikawa G3 鳳凰賞典レース",
+                            "source_url": "https://keirin.kdreams.jp/tachikawa/dokantoresultlist/2820230104/?l-id=l-pc-srdi-sdi-raceinfo_kaisai_detail_nav_btn"},
         "race_type_counts": dict(sorted(by_race_type.items())),
         "grade_field_counts": dict(sorted(by_grade.items())),
         "venue_counts": dict(sorted(by_track.items())),
         "calendar_header_fields": list(rows["calendar_links"][0]) if rows["calendar_links"] else [],
         "limits": [
             "All labels come from a historical KDreams calendar-link archive.",
-            "G3 is confirmed only when explicit grade or racing event label is available; S-class alone does NOT prove G3.",
+            "G3 is confirmed only by explicit grade/event label or an independently verified exact-date venue event; S-class alone does NOT prove G3.",
             "The three compared entry archives omit many categories, so calendar-only is not necessarily missing data.",
             "The calendar is an observed-link census, not certified nationwide completeness."
         ],
