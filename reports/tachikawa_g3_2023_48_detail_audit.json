@@ -1,0 +1,60 @@
+{
+  "scope": {
+    "venue": "立川",
+    "event": "G3 鳳凰賞典レース",
+    "from": "2023-01-04",
+    "to": "2023-01-07",
+    "races": 48
+  },
+  "source": "yuhevita-wq/keirin-market-analysis-/data/grade_races/g3/2023/g3-all-2023-q1-non-girls.zip",
+  "source_sha256": "c478dbdc21a0f4515109e66143fce667df9e45af48ceb7c9e9a22ba15203b0b4",
+  "verified_github_actions_run": "https://github.com/yuhevita-wq/keirin-data-hub/actions/runs/39626878555",
+  "audit_status": "all_48_races_have_racecards_entries_results_and_payouts; final_trifecta_trio_odds_complete_for_46_of_48",
+  "per_race_completeness": {
+    "racecards": 48,
+    "entries": 48,
+    "results": 48,
+    "payouts_seven_bet_types": 48,
+    "published_line_formations": 48,
+    "final_trifecta_and_trio_odds": 46
+  },
+  "stored_row_counts": {
+    "race_headers": 48,
+    "entries": 432,
+    "results": 432,
+    "payouts": 432,
+    "trifecta_final_odds": 23184,
+    "trio_final_odds": 3864
+  },
+  "missing_odds": [
+    {
+      "race_id": "2820230104010006",
+      "date": "2023-01-04",
+      "race_no": 6,
+      "missing": [
+        "3連単確定オッズ",
+        "3連複確定オッズ"
+      ],
+      "original_error": "OddsParseError: trifecta fixed-first tables missing for cars [1]; found=[2, 3, 4, 5, 6, 7, 8, 9]"
+    },
+    {
+      "race_id": "2820230104040007",
+      "date": "2023-01-07",
+      "race_no": 7,
+      "missing": [
+        "3連単確定オッズ",
+        "3連複確定オッズ"
+      ],
+      "original_error": "OddsParseError: trifecta fixed-first tables missing for cars [2]; found=[1, 3, 4, 5, 6, 7, 8, 9]"
+    }
+  ],
+  "notes": [
+    "Original source ZIP passed SHA256 and CRC checks.",
+    "Both incomplete races have all 9 entry rows, all 9 result rows and payout rows.",
+    "The original collector discarded odds on incomplete fixed-first table retrieval; no fully validated odds rows remain in this ZIP for those two races.",
+    "Odds in this ZIP are labeled final, not observed 15 minutes before close.",
+    "Other five bet types have payouts, but this ZIP contains only trifecta and trio market-odds tables.",
+    "Historical rider statistics may reflect retrospective collection and should be audited for leakage before AI training.",
+    "48/48 completeness is limited to content and integrity checks, not a guarantee every field is causally valid for pre-race training."
+  ]
+}
