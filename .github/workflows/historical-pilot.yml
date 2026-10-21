@@ -1,0 +1,35 @@
+name: Pilot audit of existing historical archive
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: historical-archive-audit-pilot
+  cancel-in-progress: false
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test all offline audit functions
+        run: python -m unittest discover -s tests -v
+      - name: Read only existing public GitHub archive and compare race IDs
+        run: |
+          python scripts/audit_archive_pilot.py \
+            --start 2023-01-01 --end 2023-01-07 \
+            --out out/historical_archive_audit.json
+      - name: Save aggregate audit only (no raw archive)
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-first-week-id-audit
+          path: out/historical_archive_audit.json
+          if-no-files-found: error
+          retention-days: 7
